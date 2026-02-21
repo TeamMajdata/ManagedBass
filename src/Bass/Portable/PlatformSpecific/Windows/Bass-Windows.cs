@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace ManagedBass
 {
+#if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
     public static partial class Bass
     {
         #region GetDSoundObject
@@ -277,4 +278,5 @@ namespace ManagedBass
         }
         #endregion
     }
+#endif
 }
