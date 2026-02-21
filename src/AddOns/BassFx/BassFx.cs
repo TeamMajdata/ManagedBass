@@ -8,7 +8,7 @@ namespace ManagedBass.Fx
     /// </summary>
     public static class BassFx
     {
-#if __STATIC_LINKING__
+#if UNITY_IOS && !UNITY_EDITOR
         const string DllName = "__Internal";
 #else
         const string DllName = "bass_fx";

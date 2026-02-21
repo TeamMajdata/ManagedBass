@@ -21,7 +21,7 @@ namespace ManagedBass
     /// </remarks>
     public static partial class Bass
     {
-#if __STATIC_LINKING__
+#if UNITY_IOS && !UNITY_EDITOR
         const string DllName = "__Internal";
 #else
         const string DllName = "bass";
