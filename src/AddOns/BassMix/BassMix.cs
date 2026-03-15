@@ -400,12 +400,12 @@ namespace ManagedBass.Mix
         /// <summary>
         /// Gets whether a flag is present.
         /// </summary>
-        public static bool ChannelHasFlag(int handle, BassFlags flag) => ChannelFlags(handle, 0, 0).HasFlag(flag);
+        public static bool ChannelHasFlag(int handle, BassFlags flag) => ChannelFlags(handle, 0, 0).Has(flag);
 
         /// <summary>
         /// Adds a flag to Mixer.
         /// </summary>
-        public static bool ChannelAddFlag(int handle, BassFlags flag) => ChannelFlags(handle, flag, flag).HasFlag(flag);
+        public static bool ChannelAddFlag(int handle, BassFlags flag) => ChannelFlags(handle, flag, flag).Has(flag);
 
         /// <summary>
         /// Removes a flag from Mixer.
@@ -413,7 +413,7 @@ namespace ManagedBass.Mix
         /// <param name="handle"></param>
         /// <param name="flag"></param>
         /// <returns></returns>
-        public static bool ChannelRemoveFlag(int handle, BassFlags flag) => !ChannelFlags(handle, 0, flag).HasFlag(flag);
+        public static bool ChannelRemoveFlag(int handle, BassFlags flag) => !ChannelFlags(handle, 0, flag).Has(flag);
         #endregion
 
         #region Channel Get Data
@@ -775,7 +775,7 @@ namespace ManagedBass.Mix
         public static int ChannelSetSync(int Handle, SyncFlags Type, long Parameter, SyncProcedure Procedure, IntPtr User = default(IntPtr))
         {
             // Define a dummy SyncProcedure for OneTime syncs.
-            var proc = Type.HasFlag(SyncFlags.Onetime)
+            var proc = Type.Has(SyncFlags.Onetime)
                 ? ((I, Channel, Data, Ptr) =>
                 {
                     Procedure(I, Channel, Data, Ptr);
@@ -835,7 +835,7 @@ namespace ManagedBass.Mix
         public static int ChannelSetSync(int Handle, SyncFlags Type, long Parameter, SyncProcedureEx Procedure, IntPtr User = default(IntPtr))
         {
             // Define a dummy SyncProcedureEx for OneTime syncs.
-            var proc = Type.HasFlag(SyncFlags.Onetime)
+            var proc = Type.Has(SyncFlags.Onetime)
                 ? ((I, Channel, Data, Ptr, Offset) =>
                 {
                     Procedure(I, Channel, Data, Ptr, Offset);

@@ -117,36 +117,36 @@ namespace ManagedBass
         /// <summary>
         /// The device driver has been certified by Microsoft. Always true for WDM drivers.
         /// </summary>
-        public bool IsCertified => flags.HasFlag(BASSInfoFlags.Certified);
+        public bool IsCertified => flags.Has(BASSInfoFlags.Certified);
 
         /// <summary>
         /// 16-bit samples are supported by hardware mixing.
         /// </summary>
-        public bool Supports16BitSamples => flags.HasFlag(BASSInfoFlags.Secondary16Bit);
+        public bool Supports16BitSamples => flags.Has(BASSInfoFlags.Secondary16Bit);
 
         /// <summary>
         /// 8-bit samples are supported by hardware mixing.
         /// </summary>
-        public bool Supports8BitSamples => flags.HasFlag(BASSInfoFlags.Secondary8Bit);
+        public bool Supports8BitSamples => flags.Has(BASSInfoFlags.Secondary8Bit);
 
         /// <summary>
         /// The device supports all sample rates between minrate and maxrate.
         /// </summary>
-        public bool SupportsContinuousRate => flags.HasFlag(BASSInfoFlags.ContinuousRate);
+        public bool SupportsContinuousRate => flags.Has(BASSInfoFlags.ContinuousRate);
 
         /// <summary>
         /// The device's drivers has DirectSound support
         /// </summary>
-        public bool SupportsDirectSound => !flags.HasFlag(BASSInfoFlags.EmulatedDrivers);
+        public bool SupportsDirectSound => !flags.Has(BASSInfoFlags.EmulatedDrivers);
 
         /// <summary>
         /// Mono samples are supported by hardware mixing.
         /// </summary>
-        public bool SupportsMonoSamples => flags.HasFlag(BASSInfoFlags.Mono);
+        public bool SupportsMonoSamples => flags.Has(BASSInfoFlags.Mono);
 
         /// <summary>
         /// Stereo samples are supported by hardware mixing.
         /// </summary>
-        public bool SupportsStereoSamples => flags.HasFlag(BASSInfoFlags.Stereo);
+        public bool SupportsStereoSamples => flags.Has(BASSInfoFlags.Stereo);
     }
 }

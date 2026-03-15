@@ -78,9 +78,9 @@ namespace ManagedBass
         {
             get
             {
-                if (flags.HasFlag(BassFlags.Byte))
+                if (flags.Has(BassFlags.Byte))
                     return Resolution.Byte;
-                return flags.HasFlag(BassFlags.Float) ? Resolution.Float : Resolution.Short;
+                return flags.Has(BassFlags.Float) ? Resolution.Float : Resolution.Short;
             }
         }
 
@@ -97,6 +97,6 @@ namespace ManagedBass
         /// <summary>
         /// Is the channel a decoding channel?
         /// </summary>
-        public bool IsDecodingChannel => flags.HasFlag(BassFlags.Decode);
+        public bool IsDecodingChannel => flags.Has(BassFlags.Decode);
     }
 }

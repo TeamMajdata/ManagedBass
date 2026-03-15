@@ -56,37 +56,37 @@ namespace ManagedBass.Wasapi
         /// <summary>
         /// Gets whether the device is the system default device.
         /// </summary>
-        public bool IsDefault => flags.HasFlag(WasapiDeviceInfoFlags.Default);
+        public bool IsDefault => flags.Has(WasapiDeviceInfoFlags.Default);
 
         /// <summary>
         /// Gets whether the device is enabled.
         /// </summary>
-        public bool IsEnabled => flags.HasFlag(WasapiDeviceInfoFlags.Enabled);
+        public bool IsEnabled => flags.Has(WasapiDeviceInfoFlags.Enabled);
 
         /// <summary>
         /// Gets whether the device is input device.
         /// </summary>
-        public bool IsInput => flags.HasFlag(WasapiDeviceInfoFlags.Input);
+        public bool IsInput => flags.Has(WasapiDeviceInfoFlags.Input);
 
         /// <summary>
         /// Gets whether the device is a loopback device (output capture).
         /// </summary>
-        public bool IsLoopback => flags.HasFlag(WasapiDeviceInfoFlags.Loopback);
+        public bool IsLoopback => flags.Has(WasapiDeviceInfoFlags.Loopback);
 
         /// <summary>
         /// Gets whether the device is initialized (using <see cref="BassWasapi.Init"/>).
         /// </summary>
-        public bool IsInitialized => flags.HasFlag(WasapiDeviceInfoFlags.Initialized);
+        public bool IsInitialized => flags.Has(WasapiDeviceInfoFlags.Initialized);
 
         /// <summary>
         /// Gets whether the device is unplugged.
         /// </summary>
-        public bool IsUnplugged => flags.HasFlag(WasapiDeviceInfoFlags.Unplugged);
+        public bool IsUnplugged => flags.Has(WasapiDeviceInfoFlags.Unplugged);
 
         /// <summary>
         /// Gets whether the device is disabled.
         /// </summary>
-        public bool IsDisabled => flags.HasFlag(WasapiDeviceInfoFlags.Disabled);
+        public bool IsDisabled => flags.Has(WasapiDeviceInfoFlags.Disabled);
 
         /// <summary>
         /// Returns the <see cref="Name"/> of the device.
