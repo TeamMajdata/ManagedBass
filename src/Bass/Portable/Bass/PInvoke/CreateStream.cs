@@ -271,6 +271,44 @@ namespace ManagedBass
             return h;
         }
 
+        [DllImport(DllName)]
+        static extern int BASS_StreamCreateFileUser(StreamSystem system, BassFlags flags, ref FileProcedurePointers procs, IntPtr user);
+
+        /// <summary>
+        /// Creates a sample stream from an MP3, MP2, MP1, OGG, WAV, AIFF or plugin supported file via user callback function pointers.
+        /// </summary>
+        /// <param name="System">File system to use.</param>
+        /// <param name="Flags">Any combination of <see cref="BassFlags"/>.</param>
+        /// <param name="Procedures">The user defined file function pointers (see <see cref="FileProcedurePointers" />).</param>
+        /// <param name="User">User instance data to pass to the callback functions.</param>
+        /// <returns>If successful, the new stream's handle is returned, else 0 is returned. Use <see cref="LastError" /> to get the error code.</returns>
+        /// <remarks>
+        /// <para>
+        /// This behaves like <see cref="CreateStream(StreamSystem, BassFlags, FileProcedures, IntPtr)" />, see it for the file systems and platform notes.
+        /// The callback table is passed as plain function pointers, so no delegate is marshalled and nothing is copied back,
+        /// which makes this overload suitable for AOT runtimes such as IL2CPP.
+        /// </para>
+        /// <para>
+        /// A copy is made of the <paramref name="Procedures"/> table, so it does not have to persist beyond this function call.
+        /// ManagedBass does not hold references to the delegates the pointers were created from:
+        /// keep them alive (eg. in static fields) for as long as the stream exists.
+        /// </para>
+        /// </remarks>
+        /// <exception cref="Errors.Init"><see cref="Init" /> has not been successfully called.</exception>
+        /// <exception cref="Errors.NotAvailable">Only decoding channels (<see cref="BassFlags.Decode"/>) are allowed when using the <see cref="NoSoundDevice"/> device. The <see cref="BassFlags.AutoFree"/> flag is also unavailable to decoding channels.</exception>
+        /// <exception cref="Errors.Parameter"><paramref name="System" /> is not valid.</exception>
+        /// <exception cref="Errors.FileFormat">The file's format is not recognised/supported.</exception>
+        /// <exception cref="Errors.Codec">The file uses a codec that's not available/supported. This can apply to WAV and AIFF files, and also MP3 files when using the "MP3-free" BASS version.</exception>
+        /// <exception cref="Errors.SampleFormat">The sample format is not supported by the device/drivers. If the stream is more than stereo or the <see cref="BassFlags.Float"/> flag is used, it could be that they are not supported.</exception>
+        /// <exception cref="Errors.Speaker">The specified SPEAKER flags are invalid. The device/drivers do not support them, they are attempting to assign a stereo stream to a mono speaker or 3D functionality is enabled.</exception>
+        /// <exception cref="Errors.Memory">There is insufficient memory.</exception>
+        /// <exception cref="Errors.No3D">Could not initialize 3D support.</exception>
+        /// <exception cref="Errors.Unknown">Some other mystery problem!</exception>
+        public static int CreateStream(StreamSystem System, BassFlags Flags, FileProcedurePointers Procedures, IntPtr User = default(IntPtr))
+        {
+            return BASS_StreamCreateFileUser(System, Flags, ref Procedures, User);
+        }
+
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         static extern int BASS_StreamCreateURL(string Url, int Offset, BassFlags Flags, DownloadProcedure Procedure, IntPtr User);
         
